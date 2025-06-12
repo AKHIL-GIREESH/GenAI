@@ -35,6 +35,17 @@ def convert_to_embeddings(df, col1, col2):
 def embed_query(query):
     return model.encode([query])[0].tolist()
 
+def build_contextual_prompt(query, retrieved_docs):
+    context = "\n\n".join(retrieved_docs)
+    prompt = (
+        "You are a helpful assistant. Choose the most appropriate option for the query from the below context and rephrase the correct sentence in a meaningful manner (always). If its a general question outside of it also u may answer it without using the context like u normally do but keep it short\n\n"
+        f"User Question:\n{query}"
+        f"Resources:\n{context}\n\n"
+    )
+
+    # print(prompt+"\n")
+    return prompt
+
 def search_similar_documents(query, top_k=10):
     query_vector = embed_query(query)
 
@@ -58,8 +69,14 @@ def main():
         message = input("User: ")
         if message == "bye":
             break 
+
+        relevant_docs = search_similar_documents(message)
+        prompt = build_contextual_prompt(message, relevant_docs)
+
+        response = chat.send_message_stream(prompt)
+        print("Assistant: ", end="")
         
-        response = chat.send_message_stream(message)
+        #response = chat.send_message_stream(message)
         for chunk in response:
             print(chunk.text, end="")
 
@@ -71,5 +88,5 @@ def init():
     print(embeddings)
     collection.insert_many(embeddings)
     
-#main()
-print(search_similar_documents("Whois the current COMPUTER SOCIETY secretary?"))
+main()
+#print(search_similar_documents("Hey so who is the current COMPUTER SOCIETY secretary?"))
