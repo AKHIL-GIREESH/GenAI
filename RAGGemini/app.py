@@ -38,7 +38,7 @@ def embed_query(query):
 def build_contextual_prompt(query, retrieved_docs):
     context = "\n\n".join(retrieved_docs)
     prompt = (
-        "You are a helpful assistant. Choose the most appropriate option for the query from the below context and rephrase the correct sentence in a meaningful manner (always). If its a general question outside of it also u may answer it without using the context like u normally do but keep it short\n\n"
+        "You are a helpful assistant. If the user is greeting, greet back. Use the provided context to answer the user's question. If the context does not contain relevant information, do your best to answer the question using your general knowledge. If you're unsure, say I'm not sure based on the context provided."
         f"User Question:\n{query}"
         f"Resources:\n{context}\n\n"
     )
