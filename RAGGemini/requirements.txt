@@ -1,0 +1,6 @@
+google-genai
+python-dotenv
+pymongo
+pandas
+openpyxl
+sentence-transformers
