@@ -38,7 +38,8 @@ def embed_query(query):
 def build_contextual_prompt(query, retrieved_docs):
     context = "\n\n".join(retrieved_docs)
     prompt = (
-        "You are a helpful assistant. If the user is greeting, greet back. Use the provided context to answer the user's question. If the context does not contain relevant information, do your best to answer the question using your general knowledge. If you're unsure, say I'm not sure based on the context provided."
+        #"You are a helpful assistant. If the user is greeting, greet back. Use the provided context to answer the user's question. If the context does not contain relevant information, do your best to answer the question using your general knowledge. If you're unsure, say I'm not sure based on the context provided."
+        "Ok so injecting the below context is into your memory and always answer in full sentences. U can be the normal chatbot if its outiside of the context and ans the user question. Just greet the user only if he greets you and never mention about the context unless required"
         f"User Question:\n{query}"
         f"Resources:\n{context}\n\n"
     )
