@@ -6,6 +6,9 @@ from langchain_core.prompts import PromptTemplate,load_prompt
 load_dotenv()
 model = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
 template = load_prompt("philosopher_prompt.json")
-prompt = template.invoke({"text":"Gucci is expensive no cap"})
-result = model.invoke(prompt)
+# prompt = template.invoke({"text":"Gucci is expensive no cap"})
+# result = model.invoke(prompt)
+
+chain = template | model
+result = chain.invoke({"text":"What are your thoughts on Kitkat Chocolate?"})
 print(result.content)

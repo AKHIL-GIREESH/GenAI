@@ -25,4 +25,3 @@ validate_template=True,
 )
 
 prompt.save("philosopher_prompt.json")
-
