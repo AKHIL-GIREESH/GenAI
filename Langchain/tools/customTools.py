@@ -1,4 +1,4 @@
-from langchain_core.tools import tool,StructuredTool
+from langchain_core.tools import tool,StructuredTool, BaseTool
 from pydantic import BaseModel,Field
 from typing import Type
 
@@ -31,9 +31,9 @@ print(multiply_tool.invoke({'a':10,'b':3}))
 
 # Method 3
 
-class MutliplyTool(BaseModel):
+class MultiplyTool(BaseTool):
     name:str = "multiply"
-    description:str="Multipling Tool"
+    description:str="Multiplyng Tool"
 
     args_schema: Type[BaseModel] = MultiplyInput
 
@@ -41,4 +41,4 @@ class MutliplyTool(BaseModel):
         return a*b
     
 new_multiply_tool = MultiplyTool()
-print
+print(new_multiply_tool.invoke({'a':10,'b':3}))
