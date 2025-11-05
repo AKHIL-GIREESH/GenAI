@@ -2,3 +2,5 @@ langchain
 pydantic
 langchain_core
 python-dotenv
+langchain-google-genai
+google-genai

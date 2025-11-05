@@ -1,0 +1,8 @@
+langchain
+langchain-core
+fastapi[standard]
+uvicorn
+langchain-google-genai
+python-dotenv
+faiss-cpu
+langchain-huggingface
