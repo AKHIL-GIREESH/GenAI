@@ -2,3 +2,5 @@ langchain
 langchain-ollama
 langchain-core
 python-dotenv
+langchain-chroma
+chromadb
